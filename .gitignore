@@ -1,0 +1,11 @@
+.env
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+
+# IDE / editor
+.cursor
+.vscode
+.idea
