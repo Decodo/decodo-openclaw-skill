@@ -1,6 +1,12 @@
 ---
 name: decodo-scraper
 description: Search Google or scrape web pages using the Decodo Scraper OpenClaw Skill.
+homepage: https://decodo.com
+credentials:
+  - DECODO_AUTH_TOKEN
+env:
+  required:
+    - DECODO_AUTH_TOKEN
 ---
 
 # Decodo Scraper OpenClaw Skill
