@@ -9,7 +9,6 @@ import sys
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
 
 SCRAPE_URL = "https://scraper-api.decodo.com/v2/scrape"
@@ -47,16 +46,31 @@ def scrape(args):
         sys.exit(1)
 
     if args.target == "google_search":
-        try:
-            out = data["results"][0]["content"]["results"]["results"]
-            print(json.dumps(out, ensure_ascii=False))
-        except (KeyError, IndexError, TypeError):
+        results = data.get("results") or []
+        if not results:
+            print(json.dumps({"error": "Empty or unexpected response structure", "hint": "API may have changed"}), file=sys.stderr)
+            print(resp.text)
+            sys.exit(1)
+        content = results[0].get("content") if isinstance(results[0], dict) else None
+        inner = (content or {}).get("results", {}).get("results") if isinstance(content, dict) else None
+        if inner is not None:
+            print(json.dumps(inner, ensure_ascii=False))
+        else:
+            print(json.dumps({"error": "Could not extract search results", "hint": "API structure may have changed"}), file=sys.stderr)
             print(resp.text)
     else:
-        try:
-            content = data["results"][0]["content"]
-            print(content if isinstance(content, str) else json.dumps(content, ensure_ascii=False))
-        except (KeyError, IndexError, TypeError):
+        results = data.get("results") or []
+        if not results:
+            print(json.dumps({"error": "Empty or unexpected response structure"}), file=sys.stderr)
+            print(resp.text)
+            sys.exit(1)
+        content = results[0].get("content") if isinstance(results[0], dict) else None
+        if isinstance(content, str):
+            print(content)
+        elif content is not None:
+            print(json.dumps(content, ensure_ascii=False))
+        else:
+            print(json.dumps({"error": "Could not extract page content"}), file=sys.stderr)
             print(resp.text)
 
 

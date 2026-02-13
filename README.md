@@ -12,7 +12,7 @@ Decodo Scraper OpenClaw skill for the [Decodo Web Scraping API](https://help.dec
    ```bash
    export DECODO_AUTH_TOKEN="your_base64_token"
    ```
-   Or put `DECODO_AUTH_TOKEN=...` in a `.env` file in the repo root.
+   Or copy `.env.dist` to `.env` in the repo root and set `DECODO_AUTH_TOKEN`.
 
 ## Usage
 
