@@ -20,7 +20,7 @@ def scrape(args):
         print("Error: Set DECODO_AUTH_TOKEN.", file=sys.stderr)
         sys.exit(1)
 
-    headers = {"Content-Type": "application/json", "Authorization": f"Basic {token}"}
+    headers = {"Content-Type": "application/json", "Authorization": f"Basic {token}", "x-integration": "openclaw"}
 
     if args.target == "google_search":
         payload = {"target": "google_search", "query": args.query, "headless": "html", "parse": True}
