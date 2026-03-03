@@ -10,7 +10,7 @@
 
 [![](https://dcbadge.limes.pink/api/server/https://discord.gg/Ja8dqKgvbZ)](https://discord.gg/Ja8dqKgvbZ)
 ## Overview
-This [OpenClaw](https://openclaw.ai/) skill integrates [Decodo's Web Scraping API](https://decodo.com/scraping/web) into any OpenClaw-compatible AI agent or LLM pipeline. It exposes these tools that agents can call directly:
+This [OpenClaw](https://openclaw.ai/) skill integrates [Decodo's Web Scraping API](https://decodo.com/scraping/web?utm_source=github&utm_medium=social&utm_campaign=openclaw) into any OpenClaw-compatible AI agent or LLM pipeline. It exposes these tools that agents can call directly:
 
 | Tool              | Description                                                          | Perfect for                                                                              |
 | :---------------- | :------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
@@ -44,11 +44,11 @@ Backed by Decodo's residential and datacenter proxy infrastructure, the skill ha
 - Simple CLI interface compatible with any OpenClaw agent runtime
 - Designed for scalable AI agent web scraping
 - Minimal dependencies — just Python with Requests
-- Authentication via a single Base64 token from the [Decodo dashboard](https://dashboard.decodo.com/)
+- Authentication via a single Base64 token from the [Decodo dashboard](https://dashboard.decodo.com/?utm_source=github&utm_medium=social&utm_campaign=openclaw)
 
 ## Prerequisites
 - [Python 3.9](https://www.python.org/downloads/) or higher
-- [Decodo account](https://dashboard.decodo.com/) with access to the Web Scraping API
+- [Decodo account](https://dashboard.decodo.com/?utm_source=github&utm_medium=social&utm_campaign=openclaw) with access to the Web Scraping API
 - [OpenClaw](https://openclaw.ai/) installed on your machine
 
 ## Setup
