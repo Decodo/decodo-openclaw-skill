@@ -105,7 +105,7 @@ def main():
     parser.add_argument("--target", required=True, choices=["google_search", "universal", "amazon", "amazon_search", "youtube_subtitles", "reddit_post", "reddit_subreddit"])
     parser.add_argument("--query", help="Required for google_search, amazon_search, or youtube_subtitles (video ID for YouTube).")
     parser.add_argument("--url", help="Required for universal, amazon, reddit_post, or reddit_subreddit.")
-    parser.add_argument("--geo", help="Google search geo (e.g. us, gb).")
+    parser.add_argument("--geo", help="Google search geo (e.g. US, GB).")
     parser.add_argument("--locale", help="Google search locale (e.g. en, de).")
     args = parser.parse_args()
 

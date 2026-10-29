@@ -47,7 +47,7 @@ python3 tools/scrape.py --target google_search --query "best laptops 2025"
 python3 tools/scrape.py --target google_search --query "python requests tutorial"
 ```
 
-Optional: `--geo us` or `--locale en` for location/language.
+Optional: `--geo US` or `--locale en` for location/language.
 
 ---
 
