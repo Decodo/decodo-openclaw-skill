@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Decodo Scraper OpenClaw Skill: search Google, Amazon search/product, scrape URL, YouTube subtitles, Reddit post or subreddit."""
+"""Decodo Scraper OpenClaw Skill: search Google, Amazon search/product, scrape URL, YouTube subtitles."""
 
 import argparse
 import json
@@ -14,7 +14,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env
 SCRAPE_URL = "https://scraper-api.decodo.com/v2/scrape"
 
 TARGETS_NEED_QUERY = ("google_search", "amazon_search", "youtube_subtitles")
-TARGETS_NEED_URL = ("universal", "amazon", "reddit_post", "reddit_subreddit")
+TARGETS_NEED_URL = ("universal", "amazon")
 
 
 def _first_result_content(data):
@@ -43,8 +43,6 @@ def scrape(args):
     payloads = {
         "google_search": {"target": "google_search", "query": args.query, "headless": "html", "parse": True},
         "youtube_subtitles": {"target": "youtube_subtitles", "query": args.query},
-        "reddit_post": {"target": "reddit_post", "url": args.url},
-        "reddit_subreddit": {"target": "reddit_subreddit", "url": args.url},
         "amazon": {"target": "amazon", "url": args.url, "parse": True},
         "amazon_search": {"target": "amazon_search", "query": args.query, "parse": True},
         "universal": {"target": "universal", "url": args.url, "markdown": True},
@@ -86,8 +84,6 @@ def scrape(args):
             print(resp.text)
     elif args.target == "youtube_subtitles":
         print(content if isinstance(content, str) else json.dumps(content, ensure_ascii=False))
-    elif args.target in ("reddit_post", "reddit_subreddit"):
-        print(json.dumps(content, ensure_ascii=False))
     elif args.target in ("amazon", "amazon_search"):
         inner = (content or {}).get("results") if isinstance(content, dict) else None
         if inner is not None:
@@ -101,10 +97,10 @@ def scrape(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Decodo Scraper OpenClaw Skill: search Google, scrape URL, Amazon, YouTube subtitles, Reddit.")
-    parser.add_argument("--target", required=True, choices=["google_search", "universal", "amazon", "amazon_search", "youtube_subtitles", "reddit_post", "reddit_subreddit"])
+    parser = argparse.ArgumentParser(description="Decodo Scraper OpenClaw Skill: search Google, scrape URL, Amazon, YouTube subtitles.")
+    parser.add_argument("--target", required=True, choices=["google_search", "universal", "amazon", "amazon_search", "youtube_subtitles"])
     parser.add_argument("--query", help="Required for google_search, amazon_search, or youtube_subtitles (video ID for YouTube).")
-    parser.add_argument("--url", help="Required for universal, amazon, reddit_post, or reddit_subreddit.")
+    parser.add_argument("--url", help="Required for universal or amazon.")
     parser.add_argument("--geo", help="Google search geo (e.g. US, GB).")
     parser.add_argument("--locale", help="Google search locale (e.g. en, de).")
     args = parser.parse_args()

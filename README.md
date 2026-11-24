@@ -19,8 +19,6 @@ This [OpenClaw](https://openclaw.ai/) skill integrates [Decodo's Web Scraping AP
 | `amazon`          | Parse Amazon product page data (price, reviews, specs, ASIN).        | eCommerce monitoring, price tracking, competitive intelligence, product research.        |
 | `amazon_search`   | Search Amazon for products by keyword and get parsed results.        | Discovering products, tracking trends, and broad market analysis.                        |
 | `youtube_subtitles` | Extract subtitles/transcripts from YouTube videos (by video ID).   | Video summarization, content analysis, sentiment tracking, accessibility.                |
-| `reddit_post`     | Fetch a Reddit post's content, comments, and metadata (by post URL). | Social listening, community sentiment analysis, trend tracking, and gathering user feedback. |
-| `reddit_subreddit` | Scrape Reddit subreddit listings (by subreddit URL).                | Monitoring specific communities, content discovery, niche market research.               |
 
 Backed by Decodo's residential and datacenter proxy infrastructure, the skill handles JavaScript rendering, bot detection bypass, and geo-targeting out of the box.
 
@@ -38,8 +36,6 @@ Backed by Decodo's residential and datacenter proxy infrastructure, the skill ha
 - Amazon product page parsing (by URL)
 - Amazon search (by query)
 - YouTube subtitles/transcript by video ID
-- Reddit post content by URL
-- Reddit subreddit listing by URL
 - Structured JSON or Markdown results
 - Simple CLI interface compatible with any OpenClaw agent runtime
 - Designed for scalable AI agent web scraping
@@ -75,7 +71,7 @@ DECODO_AUTH_TOKEN=your_base64_token
 ## OpenClaw agent integration
 This skill ships with a [SKILL.md](https://github.com/Decodo/decodo-openclaw-skill/blob/main/SKILL.md) file that defines all tools in the OpenClaw skill format. OpenClaw-compatible agents automatically discover and invoke the tools from this file without additional configuration.
 
-To register the skill with your OpenClaw agent, point it at the repo root — the agent will read ```SKILL.md``` and expose ```google_search```, ```universal```, ```amazon```, ```amazon_search```, ```youtube_subtitles```, ```reddit_post```, and ```reddit_subreddit``` as callable tools.
+To register the skill with your OpenClaw agent, point it at the repo root — the agent will read ```SKILL.md``` and expose ```google_search```, ```universal```, ```amazon```, ```amazon_search```, and ```youtube_subtitles``` as callable tools.
 ## Usage
 ### Google Search
 Search Google and receive structured JSON. Results are grouped by type: **organic** (main results), **ai_overviews** (AI-generated summaries), **paid** (ads), **related_questions**, **related_searches**, **discussions_and_forums**, and others depending on the query.
@@ -101,16 +97,6 @@ python3 tools/scrape.py --target amazon_search --query "laptop"
 Fetch subtitles/transcript for a YouTube video (use the video ID, e.g., from `?v=VIDEO_ID`):
 ```
 python3 tools/scrape.py --target youtube_subtitles --query "dFu9aKJoqGg"
-```
-### Reddit post
-Fetch a Reddit post’s content (use the full post URL):
-```
-python3 tools/scrape.py --target reddit_post --url "https://www.reddit.com/r/nba/comments/17jrqc5/serious_next_day_thread_postgame_discussion/"
-```
-### Reddit subreddit
-Fetch a Reddit subreddit listing (use the subreddit URL):
-```
-python3 tools/scrape.py --target reddit_subreddit --url "https://www.reddit.com/r/nba/"
 ```
 ## Related resources
 [Decodo Web Scraping API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
