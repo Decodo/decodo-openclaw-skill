@@ -1,6 +1,6 @@
 ---
 name: decodo-scraper
-description: Search Google, scrape web pages, Amazon product pages, YouTube subtitles, or Reddit (post/subreddit) using the Decodo Scraper OpenClaw Skill.
+description: Search Google, scrape web pages, Amazon product pages, or YouTube subtitles using the Decodo Scraper OpenClaw Skill.
 homepage: https://decodo.com
 credentials:
   - DECODO_AUTH_TOKEN
@@ -11,7 +11,7 @@ env:
 
 # Decodo Scraper OpenClaw Skill
 
-Use this skill to search Google, scrape any URL, or fetch YouTube subtitles via the [Decodo Web Scraping API](https://help.decodo.com/docs/web-scraping-api-google-search). **Search** outputs a JSON object of result sections; **Scrape URL** outputs plain markdown; **Amazon** and **Amazon search** output parsed product-page or search results (JSON). Amazon search uses `--query`. **YouTube subtitles** outputs transcript/subtitles. **Reddit post** and **Reddit subreddit** output post/listing content (JSON).
+Use this skill to search Google, scrape any URL, or fetch YouTube subtitles via the [Decodo Web Scraping API](https://help.decodo.com/docs/web-scraping-api-google-search). **Search** outputs a JSON object of result sections; **Scrape URL** outputs plain markdown; **Amazon** and **Amazon search** output parsed product-page or search results (JSON). Amazon search uses `--query`. **YouTube subtitles** outputs transcript/subtitles.
 
 **Authentication:** Set `DECODO_AUTH_TOKEN` (Basic auth token from Decodo Dashboard → Scraping APIs) in your environment or in a `.env` file in the repo root.
 
@@ -116,38 +116,6 @@ python3 tools/scrape.py --target youtube_subtitles --query "dFu9aKJoqGg"
 
 ---
 
-### 6. Reddit post
-
-Use this to get the content of a Reddit post (thread). Pass the full post URL as `--url`.
-
-**Command:**
-```bash
-python3 tools/scrape.py --target reddit_post --url "https://www.reddit.com/r/SUBREDDIT/comments/ID/..."
-```
-
-**Examples:**
-```bash
-python3 tools/scrape.py --target reddit_post --url "https://www.reddit.com/r/nba/comments/17jrqc5/serious_next_day_thread_postgame_discussion/"
-```
-
----
-
-### 7. Reddit subreddit
-
-Use this to get the listing (posts) of a Reddit subreddit. Pass the subreddit URL as `--url`.
-
-**Command:**
-```bash
-python3 tools/scrape.py --target reddit_subreddit --url "https://www.reddit.com/r/SUBREDDIT/"
-```
-
-**Examples:**
-```bash
-python3 tools/scrape.py --target reddit_subreddit --url "https://www.reddit.com/r/nba/"
-```
-
----
-
 ## Summary
 
 | Action             | Target               | Argument   | Example command |
@@ -157,7 +125,5 @@ python3 tools/scrape.py --target reddit_subreddit --url "https://www.reddit.com/
 | Amazon product     | `amazon`             | `--url`    | `python3 tools/scrape.py --target amazon --url "https://www.amazon.com/dp/B09H74FXNW"` |
 | Amazon search      | `amazon_search`     | `--query`  | `python3 tools/scrape.py --target amazon_search --query "laptop"` |
 | YouTube subtitles  | `youtube_subtitles`  | `--query`  | `python3 tools/scrape.py --target youtube_subtitles --query "dFu9aKJoqGg"` |
-| Reddit post        | `reddit_post`        | `--url`    | `python3 tools/scrape.py --target reddit_post --url "https://www.reddit.com/r/nba/comments/17jrqc5/..."` |
-| Reddit subreddit   | `reddit_subreddit`   | `--url`    | `python3 tools/scrape.py --target reddit_subreddit --url "https://www.reddit.com/r/nba/"` |
 
-**Output:** Search → JSON (sections). Scrape URL → markdown. Amazon / Amazon search → JSON (results e.g. ads, product info, delivery_postcode). YouTube → transcript. Reddit → JSON (content).
+**Output:** Search → JSON (sections). Scrape URL → markdown. Amazon / Amazon search → JSON (results e.g. ads, product info, delivery_postcode). YouTube → transcript.
